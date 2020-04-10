@@ -1,3 +1,7 @@
+package Tests;
+
+import Model.cerveau;
+
 import java.util.Scanner;
 
 public class textualvisual {

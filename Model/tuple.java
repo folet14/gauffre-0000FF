@@ -1,3 +1,5 @@
+package Model;
+
 public class tuple {
     public final int player;
     public final int nbcoup;

@@ -1,15 +1,15 @@
-/*modele*/
+package Model;/*modele*/
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class cerveau{
-	ArrayList<ArrayList<Boolean>> gaufre;
-	int largeur;
-	int hauteur;
-	ArrayList<tuple> historique;
-	int coup;
-	int nbplayers;
+	public ArrayList<ArrayList<Boolean>> gaufre;
+	public int largeur;
+	public int hauteur;
+	public ArrayList<tuple> historique;
+	public int coup;
+	public int nbplayers;
 
 	public void cuisiner(int width, int height, int guests){
 		this.largeur = width;
