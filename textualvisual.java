@@ -5,7 +5,7 @@ public class textualvisual {
         for (int i = 0; i < jeu.hauteur; i++){
             StringBuilder line = new StringBuilder("| ");
             for (int j = 0; j < jeu.largeur; j++){
-                if(jeu.gauffre.get(i).get(j)){
+                if(jeu.gaufre.get(i).get(j)){
                     line.append("1 | ");
                 }
                 else{
