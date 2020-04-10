@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class cerveau{
-	ArrayList<ArrayList<Boolean>> gauffre;
+	ArrayList<ArrayList<Boolean>> gaufre;
 	int largeur;
 	int hauteur;
 	ArrayList<tuple> historique;
@@ -14,9 +14,9 @@ public class cerveau{
 	public void cuisiner(int width, int height, int guests){
 		this.largeur = width;
 		this.hauteur = height;
-		this.gauffre = new ArrayList<>();
+		this.gaufre = new ArrayList<>();
 		for (int i = 0; i < this.hauteur; i++){
-			this.gauffre.add(new ArrayList<>(Collections.nCopies(this.largeur, true)));
+			this.gaufre.add(new ArrayList<>(Collections.nCopies(this.largeur, true)));
 		}
 		this.historique = new ArrayList<>();
 		this.coup = 0;
@@ -24,9 +24,9 @@ public class cerveau{
 	}
 
 	public void recuisiner(){ /*reset grid*/
-		this.gauffre = new ArrayList<>();
+		this.gaufre = new ArrayList<>();
 		for (int i = 0; i < this.hauteur; i++){
-			this.gauffre.add(new ArrayList<>(Collections.nCopies(this.largeur, true)));
+			this.gaufre.add(new ArrayList<>(Collections.nCopies(this.largeur, true)));
 		}
 	}
 
@@ -47,8 +47,8 @@ public class cerveau{
 		if (!(coordX == 0 && coordY == 0)) {
 			for (int i = coordY; i < this.hauteur; i++) {
 				for (int j = coordX; j < this.largeur; j++) {
-					if (this.gauffre.get(i).get(j)) {
-						this.gauffre.get(i).set(j, false);
+					if (this.gaufre.get(i).get(j)) {
+						this.gaufre.get(i).set(j, false);
 						eaten++;
 					}
 				}
@@ -87,12 +87,12 @@ public class cerveau{
 		int sumbool = 0;
 		for (int i = 0; i < this.hauteur; i++){
 			for (int j = 0; j < this.largeur; j++){
-					if (this.gauffre.get(i).get(j)){
+					if (this.gaufre.get(i).get(j)){
 						sumbool++;
 				}
 			}
 		}
-		if (this.gauffre.get(0).get(0) && (sumbool == 1)){
+		if (this.gaufre.get(0).get(0) && (sumbool == 1)){
 			return whojustplayed();
 		}
 		else{
