@@ -3,11 +3,11 @@ package Model;/*modele*/
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class cerveau{
+public class Cerveau {
 	public ArrayList<ArrayList<Boolean>> gaufre;
 	public int largeur;
 	public int hauteur;
-	public ArrayList<tuple> historique;
+	public ArrayList<Tuple> historique;
 	public int coup;
 	public int nbplayers;
 
@@ -56,9 +56,9 @@ public class cerveau{
 			if (eaten != 0) {
 				coup++;
 				if (this.historique.size() < coup) {
-					this.historique.add(new tuple(player, this.coup, coordX, coordY, eaten));
+					this.historique.add(new Tuple(player, this.coup, coordX, coordY, eaten));
 				} else {
-					this.historique.add(this.coup - 1, new tuple(player, this.coup, coordX, coordY, eaten));
+					this.historique.add(this.coup - 1, new Tuple(player, this.coup, coordX, coordY, eaten));
 				}
 			}
 		}
@@ -70,7 +70,7 @@ public class cerveau{
 			this.coup--;
 			recuisiner();
 			for (int i = 0; i < this.coup; i++){
-				tuple couptuple = this.historique.get(i);
+				Tuple couptuple = this.historique.get(i);
 				manger(couptuple.player,couptuple.first,couptuple.second);
 			}
 		}
@@ -78,7 +78,7 @@ public class cerveau{
 
 	public void avant(){ /* go forward*/
 		if (this.coup < this.historique.size()){
-			tuple coupjoue = this.historique.get(coup);
+			Tuple coupjoue = this.historique.get(coup);
 			manger(coupjoue.player,coupjoue.first,coupjoue.second);
 		}
 	}

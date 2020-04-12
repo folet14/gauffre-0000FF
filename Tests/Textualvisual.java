@@ -1,11 +1,11 @@
 package Tests;
 
-import Model.cerveau;
+import Model.Cerveau;
 
 import java.util.Scanner;
 
-public class textualvisual {
-    private static void affichage(cerveau jeu){
+public class Textualvisual {
+    private static void affichage(Cerveau jeu){
         for (int i = 0; i < jeu.hauteur; i++){
             StringBuilder line = new StringBuilder("| ");
             for (int j = 0; j < jeu.largeur; j++){
@@ -21,7 +21,7 @@ public class textualvisual {
     }
 
     public static void main(String[] args){
-       cerveau jeu = new cerveau();
+       Cerveau jeu = new Cerveau();
        jeu.cuisiner(Integer.parseInt(args[0]),Integer.parseInt(args[1]),Integer.parseInt(args[2]));
        Scanner scanner = new Scanner(System.in);
         while(jeu.whowin() == 0){
@@ -31,7 +31,7 @@ public class textualvisual {
             System.out.println("au tour de joueur " + jeu.whosturn());
 
 
-            textualvisual.affichage(jeu);
+            Textualvisual.affichage(jeu);
             System.out.println("avant f, arriere b, rien n");
             String line = scanner.nextLine();
             switch (line){
