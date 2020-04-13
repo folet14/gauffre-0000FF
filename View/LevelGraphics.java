@@ -30,10 +30,10 @@ public class LevelGraphics extends JComponent {
         int squareHeight = windowHeight/cerveau.hauteur;
 
         // drawing each square of the waffle
-        for(int i = 0; i < cerveau.largeur; i++) {
-            for(int j = 0; j < cerveau.hauteur; j++) {
+        for(int i = 0; i < cerveau.hauteur; i++) {
+            for(int j = 0; j < cerveau.largeur; j++) {
                 // color is set relative to square presence
-                if(cerveau.gaufre.get(i).get(j)) { // square is present
+                if(cerveau.gaufre.get(j).get(i)) { // square is present
                     drawable.setColor(presentSquareColor);
 
                 } else { // square has been eaten
@@ -47,9 +47,9 @@ public class LevelGraphics extends JComponent {
         // drawing the outlines of each square.
         // Needs to be done after the squares have been drawn or else squares will overlap
         drawable.setColor(Color.BLUE);
-        for(int i = 0; i < cerveau.largeur; i++) {
-            for (int j = 0; j < cerveau.hauteur; j++) {
-                if(cerveau.gaufre.get(i).get(j)) {
+        for(int i = 0; i < cerveau.hauteur; i++) {
+            for (int j = 0; j < cerveau.largeur; j++) {
+                if(cerveau.gaufre.get(j).get(i)) {
                     // only draw the bottom and left line. Avoids redundancy
                     drawable.drawLine(squareWidth * i, squareHeight * (j + 1), squareWidth * (i + 1), squareHeight * (j + 1));
                     drawable.drawLine(squareWidth * (i + 1), squareHeight * j, squareWidth * (i + 1), squareHeight * (j + 1));
