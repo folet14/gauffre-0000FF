@@ -55,7 +55,7 @@ public class Window implements Runnable{
      */
     public void updateInfos() {
         currentPlayerLabel.setText("C'est au joueur " + cerveau.whosturn() + " !");
-        currentTurnLabel.setText("Tour n°" + cerveau.howmanyturn());
+        currentTurnLabel.setText("Tour n°" + cerveau.howmanyturn() + 1);
     }
 
     /*

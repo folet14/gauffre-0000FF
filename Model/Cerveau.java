@@ -57,7 +57,7 @@ public class Cerveau {
 		return eaten;
 	}
 	
-	public int manger(int coordX, int coordY) {
+	private int manger(int coordX, int coordY) {
 		int eaten = 0;
 		
 		for (int i = coordY; i < this.hauteur; i++) {
