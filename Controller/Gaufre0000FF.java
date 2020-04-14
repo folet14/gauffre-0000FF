@@ -15,6 +15,6 @@ public class Gaufre0000FF {
 		cerveau.cuisiner(WIDTH, HEIGHT, NB_PLAYER);
 		window.run();
 		
-		window.getLevelGraphics().addMouseListener(new MangiareCialde(cerveau, window.getLevelGraphics()));
+		window.getLevelGraphics().addMouseListener(new MangiareCialde(cerveau, window));
 	}
 }

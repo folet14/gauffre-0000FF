@@ -3,11 +3,14 @@ package View;
 import Model.Cerveau;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Window implements Runnable{
     private JFrame frame;
     private Cerveau cerveau;
+
     private LevelGraphics levelGraphics;
+    private JLabel infoLabel;
 
     public Window(Cerveau cerveau) {
         this.cerveau = cerveau;
@@ -18,11 +21,18 @@ public class Window implements Runnable{
         // create the window
         frame = new JFrame("0000FF waffle");
 
-        // createthe graphical representation of the game
-        levelGraphics = new LevelGraphics(cerveau);
+        // create the main panel, all other widgets will be here
+        JPanel mainPanel = new JPanel(new BorderLayout());
+        frame.add(mainPanel);
 
-        // add the game to the window
-        frame.add(levelGraphics);
+        // create and add the game to the main panel
+        levelGraphics = new LevelGraphics(cerveau);
+        mainPanel.add(levelGraphics, BorderLayout.CENTER);
+
+        // create and add the bottom info text
+        infoLabel = new JLabel("DEFAULT TEXT");
+        infoLabel.setFont(new Font("Arial", Font.PLAIN, 30));
+        mainPanel.add(infoLabel, BorderLayout.SOUTH);
 
         // When red X is clicked
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,5 +44,9 @@ public class Window implements Runnable{
 
     public LevelGraphics getLevelGraphics() {
         return levelGraphics;
+    }
+
+    public void setInfoLabel(String newText) {
+        infoLabel.setText(newText);
     }
 }
