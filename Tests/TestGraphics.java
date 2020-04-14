@@ -14,20 +14,20 @@ public class TestGraphics {
         window.run();
 
         Thread.sleep(1000);
-        cerveau.manger(0, 3, 3);
+        cerveau.jouerCoup(0, 3, 3);
         window.getLevelGraphics().repaint();
 
         Thread.sleep(1000);
-        cerveau.manger(0, 1, 4);
+        cerveau.jouerCoup(0, 1, 4);
         window.getLevelGraphics().repaint();
 
         Thread.sleep(1000);
-        cerveau.manger(0, 1, 1);
+        cerveau.jouerCoup(0, 1, 1);
         window.getLevelGraphics().repaint();
 
         // last square cannot be eaten. Following code shouldn't change anything
         Thread.sleep(1000);
-        cerveau.manger(0, 0, 0);
+        cerveau.jouerCoup(0, 0, 0);
         window.getLevelGraphics().repaint();
     }
 

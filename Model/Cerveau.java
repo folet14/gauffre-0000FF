@@ -42,26 +42,33 @@ public class Cerveau {
 		return this.coup;
 	}
 
-	public int manger(int player, int coordX, int coordY) {/* a normal turn*/
+	public int jouerCoup(int player, int coordX, int coordY) {/* a normal turn*/
 		int eaten = 0;
+		
 		if (!(coordX == 0 && coordY == 0)) {
-			for (int i = coordY; i < this.hauteur; i++) {
-				for (int j = coordX; j < this.largeur; j++) {
-					if (this.gaufre.get(i).get(j)) {
-						this.gaufre.get(i).set(j, false);
-						eaten++;
-					}
-				}
-			}
+			eaten = manger(coordX, coordY);
+			
 			if (eaten != 0) {
-				coup++;
-				if (this.historique.size() < coup) {
-					this.historique.add(new Tuple(player, this.coup, coordX, coordY, eaten));
-				} else {
-					this.historique.add(this.coup - 1, new Tuple(player, this.coup, coordX, coordY, eaten));
+				this.historique.add(this.coup, new Tuple(player, this.coup, coordX, coordY, eaten));
+				this.coup++;
+			}
+		}
+		
+		return eaten;
+	}
+	
+	public int manger(int coordX, int coordY) {
+		int eaten = 0;
+		
+		for (int i = coordY; i < this.hauteur; i++) {
+			for (int j = coordX; j < this.largeur; j++) {
+				if (this.gaufre.get(i).get(j)) {
+					this.gaufre.get(i).set(j, false);
+					eaten++;
 				}
 			}
 		}
+		
 		return eaten;
 	}
 
@@ -71,7 +78,7 @@ public class Cerveau {
 			recuisiner();
 			for (int i = 0; i < this.coup; i++){
 				Tuple couptuple = this.historique.get(i);
-				manger(couptuple.player,couptuple.first,couptuple.second);
+				manger(couptuple.first, couptuple.second);
 			}
 		}
 	}
@@ -79,7 +86,8 @@ public class Cerveau {
 	public void avant(){ /* go forward*/
 		if (this.coup < this.historique.size()){
 			Tuple coupjoue = this.historique.get(coup);
-			manger(coupjoue.player,coupjoue.first,coupjoue.second);
+			manger(coupjoue.first, coupjoue.second);
+			this.coup++;
 		}
 	}
 

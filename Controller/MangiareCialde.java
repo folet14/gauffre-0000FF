@@ -27,11 +27,11 @@ public class MangiareCialde extends MouseAdapter {
 			int y = e.getY() / (levelGraphics.getHeight()/cerveau.hauteur);
 			
 			System.out.println("Joueur " + cerveau.whosturn() + " mange la case " + x + ", " + y);
-			cerveau.manger(cerveau.whosturn(), x, y);
+			cerveau.jouerCoup(cerveau.whosturn(), x, y);
 
 			// set the info label to the current player
 			window.updateInfos();
-			
+
 			levelGraphics.repaint();
 		} else {
 			System.out.println("Joueur " + cerveau.whojustplayed() + " gagne la partie !");
