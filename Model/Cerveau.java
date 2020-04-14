@@ -39,7 +39,7 @@ public class Cerveau {
 	}
 
 	public int howmanyturn(){
-		return this.coup/2;
+		return this.coup;
 	}
 
 	public int manger(int player, int coordX, int coordY) {/* a normal turn*/

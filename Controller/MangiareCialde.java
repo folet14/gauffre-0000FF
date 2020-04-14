@@ -17,7 +17,7 @@ public class MangiareCialde extends MouseAdapter {
 		this.window = window;
 		this.levelGraphics = window.getLevelGraphics();
 		// set the info label to the current player
-		window.setInfoLabel("C'est au joueur " + cerveau.whosturn() + " !");
+		window.updateInfos();
 	}
 	
 	@Override
@@ -30,14 +30,14 @@ public class MangiareCialde extends MouseAdapter {
 			cerveau.manger(cerveau.whosturn(), x, y);
 
 			// set the info label to the current player
-			window.setInfoLabel("C'est au joueur " + cerveau.whosturn() + " !");
+			window.updateInfos();
 			
 			levelGraphics.repaint();
 		} else {
 			System.out.println("Joueur " + cerveau.whojustplayed() + " gagne la partie !");
 
 			// set the info label to display the winner
-			window.setInfoLabel("Le joueur " + cerveau.whojustplayed() + " gagne la partie !");
+			window.updateInfos();
 		}
 	}
 	
