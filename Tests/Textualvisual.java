@@ -52,7 +52,7 @@ public class Textualvisual {
                     System.out.println("y? = ");
                     int y = scanner.nextInt() - 1;
                     scanner.nextLine();
-                    System.out.println("le joueur a manger " +jeu.manger(jeu.whosturn(), x, y)+ " cases");
+                    System.out.println("le joueur a manger " +jeu.jouerCoup(jeu.whosturn(), x, y)+ " cases");
                     break;
                 }
             }

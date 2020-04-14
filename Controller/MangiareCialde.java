@@ -22,7 +22,7 @@ public class MangiareCialde extends MouseAdapter {
 			int y = e.getY() / (levelGraphics.getHeight()/cerveau.hauteur);
 			
 			System.out.println("Joueur " + cerveau.whosturn() + " mange la case " + x + ", " + y);
-			cerveau.manger(cerveau.whosturn(), x, y);
+			cerveau.jouerCoup(cerveau.whosturn(), x, y);
 			
 			levelGraphics.repaint();
 		} else {
