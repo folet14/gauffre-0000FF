@@ -1,5 +1,4 @@
-package Controller;
-
+import Controller.MangiareCialde;
 import Model.Cerveau;
 import View.Window;
 
