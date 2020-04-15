@@ -48,21 +48,29 @@ public class Cerveau {
 		return this.coup;
 	}
 
+	// Fonction permettant de jouer, le nombre de coup est implémenté et l'historique est mis à jour
 	public int jouerCoup(int player, int coordX, int coordY) {/* a normal turn*/
 		int eaten = 0;
 		
 		if (!(coordX == 0 && coordY == 0)) {
-			eaten = manger(coordX, coordY);
+			eaten = manger(coordX, coordY); // Suppression des cases mangées
 			
 			if (eaten != 0) {
-				this.historique.add(this.coup, new Tuple(player, this.coup, coordX, coordY, eaten));
+				this.historique.add(this.coup, new Tuple(player, this.coup, coordX, coordY, eaten)); //Ajout du coup courant à l'historique
 				this.coup++;
+				
+				if(this.historique.size() > this.coup) { //S'il y a eu retour en arrière et qu'un coup a été modifié alors suppression de l'historique après le nouveau coup
+					for(int i = this.historique.size() - 1; i >= this.coup; i--) {
+						this.historique.remove(i);
+					}
+				}
 			}
 		}
 		
 		return eaten;
 	}
 	
+	// Fonction permettant de manger les cases dans le coin inférieur droit à partir de coordonnées x, y
 	private int manger(int coordX, int coordY) {
 		int eaten = 0;
 		
