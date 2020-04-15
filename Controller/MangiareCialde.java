@@ -8,9 +8,9 @@ import View.LevelGraphics;
 import View.Window;
 
 public class MangiareCialde extends MouseAdapter {
-	private Cerveau cerveau;
-	private Window window;
-	private LevelGraphics levelGraphics;
+	private final Cerveau cerveau;
+	private final Window window;
+	private final LevelGraphics levelGraphics;
 	
 	public MangiareCialde(Cerveau cerveau, Window window) {
 		this.cerveau = cerveau;
@@ -22,22 +22,19 @@ public class MangiareCialde extends MouseAdapter {
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if(cerveau.whowin() == 0) {
-			int x = e.getX() / (levelGraphics.getWidth()/cerveau.largeur);
-			int y = e.getY() / (levelGraphics.getHeight()/cerveau.hauteur);
-			
-			System.out.println("Joueur " + cerveau.whosturn() + " mange la case " + x + ", " + y);
-			cerveau.jouerCoup(cerveau.whosturn(), x, y);
+		int x = e.getX() / (levelGraphics.getWidth()/cerveau.largeur);
+		int y = e.getY() / (levelGraphics.getHeight()/cerveau.hauteur);
 
-			// set the info label to the current player
-			window.updateInfos();
+		cerveau.jouerCoup(cerveau.whosturn(), x, y);
 
-			levelGraphics.repaint();
-		} else {
-			System.out.println("Joueur " + cerveau.whojustplayed() + " gagne la partie !");
+		levelGraphics.repaint();
 
-			// set the info label to display the winner
-			window.updateInfos();
+		// set the info label to the current player
+		window.updateInfos();
+
+		// if it's the end of the game, notify the GUI
+		if (cerveau.whowin() != 0) {
+			window.setEndGameGUI(true);
 		}
 	}
 	

@@ -7,9 +7,11 @@ import java.awt.*;
 
 public class Window implements Runnable{
     private JFrame frame;
-    private Cerveau cerveau;
+    private final Cerveau cerveau;
 
     private LevelGraphics levelGraphics;
+    private JPanel historyPanel;
+    private JPanel endGamePanel;
     private JLabel currentPlayerLabel;
     private JLabel currentTurnLabel;
 
@@ -30,11 +32,20 @@ public class Window implements Runnable{
         levelGraphics = new LevelGraphics(cerveau);
         mainPanel.add(levelGraphics, BorderLayout.CENTER);
 
-        //create historic panel and place all widgets inside
+        // create info panel and place all widgets inside
         createInfoPanel(mainPanel);
 
-        //create history panel and place all widgets inside
-        createHistoryPanel(mainPanel);
+        JPanel topPanel = new JPanel(new GridLayout(1,2));
+        mainPanel.add(topPanel, BorderLayout.NORTH);
+
+        // create end game panel and add all widgets inside
+        createEndGamePanel(topPanel);
+
+        // create history panel and place all widgets inside
+        createHistoryPanel(topPanel);
+
+        // set GUI to "game in progress"
+        setEndGameGUI(false);
 
         // When red X is clicked
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,11 +60,30 @@ public class Window implements Runnable{
     }
 
     /*
-    * Updates the bottom info labels
+    * Updates the bottom info labels with information found in the model
      */
     public void updateInfos() {
-        currentPlayerLabel.setText("C'est au joueur " + cerveau.whosturn() + " !");
-        currentTurnLabel.setText("Tour n°" + cerveau.howmanyturn() + 1);
+        if(cerveau.whowin() == 0) {
+            currentPlayerLabel.setText("C'est au joueur " + cerveau.whosturn() + " !");
+        } else {
+            currentPlayerLabel.setText("Le joueur " + cerveau.whojustplayed() + " gagne la partie !");
+        }
+        currentTurnLabel.setText("Tour n°" + (cerveau.howmanyturn() + 1));
+    }
+
+    /*
+    * Function changes the top panel.
+    * True : the game is done. Display the end game buttons
+    * False : the is in progress. Display the history buttons
+     */
+    public void setEndGameGUI(boolean isEndGame) {
+        if(isEndGame) { // the game is done
+            historyPanel.setVisible(false);
+            endGamePanel.setVisible(true);
+        } else { // the game is in progress
+            historyPanel.setVisible(true);
+            endGamePanel.setVisible(false);
+        }
     }
 
     /*
@@ -84,10 +114,10 @@ public class Window implements Runnable{
     * Widgets are two buttons : undo and redo.
     * Both have a action listener linked to the model
      */
-    private void createHistoryPanel(JPanel mainPanel) {
-        // create and add the history panel at the top
-        JPanel historyPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        mainPanel.add(historyPanel, BorderLayout.NORTH);
+    private void createHistoryPanel(JPanel topPanel) {
+        // create the history panel at the top
+        historyPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        topPanel.add(historyPanel);
 
         // create the history buttons
         JButton undoButton = new JButton("arrière");
@@ -108,5 +138,33 @@ public class Window implements Runnable{
         // add buttons to the historic panel (top panel)
         historyPanel.add(undoButton);
         historyPanel.add(redoButton);
+    }
+
+    /*
+    * Function creates the top end game panel that contains two buttons.
+    * Buttons are a replay button and a quit button.
+    * /!\ this panel should not be visible if history panel is visible /!\
+     */
+    private void createEndGamePanel(JPanel topPanel) {
+        // create the end game panel at the top
+        endGamePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        topPanel.add(endGamePanel);
+
+        // create the end game buttons
+        JButton replayButton = new JButton("rejouer");
+        JButton quitButton = new JButton("quitter");
+
+        // add action listeners to the buttons
+        replayButton.addActionListener(actionEvent -> {
+            cerveau.resetGame();
+            setEndGameGUI(false);
+            updateInfos();
+            levelGraphics.repaint();
+        });
+        quitButton.addActionListener(actionEvent -> frame.dispose());
+
+        // add buttons to the end game panel
+        endGamePanel.add(quitButton);
+        endGamePanel.add(replayButton);
     }
 }

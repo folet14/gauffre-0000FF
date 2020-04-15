@@ -30,6 +30,12 @@ public class Cerveau {
 		}
 	}
 
+	public void resetGame() {
+		recuisiner();
+		this.historique = new ArrayList<>();
+		this.coup = 0;
+	}
+
 	public int whosturn(){
 		return ((this.coup)%this.nbplayers)+1;
 	}
