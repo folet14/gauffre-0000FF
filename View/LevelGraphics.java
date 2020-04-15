@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class LevelGraphics extends JComponent {
 
-    private Cerveau cerveau;
+    private final Cerveau cerveau;
 
     public LevelGraphics(Cerveau cerveau) {
         this.cerveau = cerveau;
