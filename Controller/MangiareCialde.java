@@ -11,7 +11,7 @@ public class MangiareCialde extends MouseAdapter {
 	private final Cerveau cerveau;
 	private final GameWindow gameWindow;
 	private final LevelGraphics levelGraphics;
-	private final IAAleatoire ia;
+	private final IA ia;
 	
 	public MangiareCialde(Cerveau cerveau, GameWindow gameWindow) {
 		this.cerveau = cerveau;
@@ -39,9 +39,9 @@ public class MangiareCialde extends MouseAdapter {
 		// if it's the end of the game, notify the GUI
 		if (cerveau.whowin() != 0) {
 			gameWindow.setEndGameGUI(true);
+		} else {
+			ia.jouer();
 		}
-
-		ia.jouer();
 	}
 	
 }

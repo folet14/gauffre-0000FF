@@ -6,7 +6,7 @@ import Model.Cerveau;
 import View.LevelGraphics;
 import View.GameWindow;
 
-public class IAAleatoire {
+public class IAAleatoire implements IA {
     private final Cerveau cerveau;
     private final GameWindow window;
     private final LevelGraphics levelGraphics;
@@ -21,6 +21,7 @@ public class IAAleatoire {
         this.random = new Random();
     }
 
+    @Override
     public void jouer() {
         boolean aJouer;
         do {
