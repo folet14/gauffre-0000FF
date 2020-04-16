@@ -5,7 +5,7 @@ import Model.Cerveau;
 import javax.swing.*;
 import java.awt.*;
 
-public class Window implements Runnable{
+public class GameWindow implements Runnable{
     private JFrame frame;
     private final Cerveau cerveau;
 
@@ -15,7 +15,7 @@ public class Window implements Runnable{
     private JLabel currentPlayerLabel;
     private JLabel currentTurnLabel;
 
-    public Window(Cerveau cerveau) {
+    public GameWindow(Cerveau cerveau) {
         this.cerveau = cerveau;
     }
 
