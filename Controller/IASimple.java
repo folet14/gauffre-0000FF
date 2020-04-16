@@ -33,11 +33,18 @@ public class IASimple implements IA {
             cerveau.jouerCoup(player, 1, 0);
         } else {
             // coup aleatoire
+            boolean coupPerdantInevitable = !cerveau.gaufre.get(2).get(0) && !cerveau.gaufre.get(1).get(1) && !cerveau.gaufre.get(0).get(2);
             boolean aJouer;
             do {
                 int x = random.nextInt(cerveau.largeur);
                 int y = random.nextInt(cerveau.hauteur);
-                aJouer = cerveau.jouerCoup(player, x, y) != 0;
+                boolean estCoupPerdant = (x == 0 && y == 1) || (x == 1 && y == 0);
+
+                if (estCoupPerdant && !coupPerdantInevitable) {
+                    aJouer = false;
+                } else {
+                    aJouer = cerveau.jouerCoup(player, x, y) != 0;
+                }
             } while(!aJouer);
         }
 
