@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Observable;
 
-public class MenuWindow implements Runnable {
+public class MenuWindow extends Observable implements Runnable {
     private JFrame frame;
 
     @Override
@@ -50,7 +50,8 @@ public class MenuWindow implements Runnable {
         playPanel.add(playButton);
 
         playButton.addActionListener(actionEvent -> {
-            // TODO: 16/04/2020 notify some observer
+            System.out.println("notifing observers");
+            notifyObservers();
         });
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
