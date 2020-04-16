@@ -4,15 +4,15 @@ import java.util.Random;
 
 import Model.Cerveau;
 import View.LevelGraphics;
-import View.Window;
+import View.GameWindow;
 
 public class IAAleatoire {
     private final Cerveau cerveau;
-    private final Window window;
+    private final GameWindow window;
     private final LevelGraphics levelGraphics;
     private final Random random;
 
-    public IAAleatoire(Cerveau cerveau, Window window) {
+    public IAAleatoire(Cerveau cerveau, GameWindow window) {
         this.cerveau = cerveau;
         this.window = window;
         this.levelGraphics = window.getLevelGraphics();

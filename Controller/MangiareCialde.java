@@ -5,21 +5,21 @@ import java.awt.event.MouseEvent;
 
 import Model.Cerveau;
 import View.LevelGraphics;
-import View.Window;
+import View.GameWindow;
 
 public class MangiareCialde extends MouseAdapter {
 	private final Cerveau cerveau;
-	private final Window window;
+	private final GameWindow gameWindow;
 	private final LevelGraphics levelGraphics;
 	private final IAAleatoire ia;
 	
-	public MangiareCialde(Cerveau cerveau, Window window) {
+	public MangiareCialde(Cerveau cerveau, GameWindow gameWindow) {
 		this.cerveau = cerveau;
-		this.window = window;
-		this.levelGraphics = window.getLevelGraphics();
+		this.gameWindow = gameWindow;
+		this.levelGraphics = gameWindow.getLevelGraphics();
 		// set the info label to the current player
-		window.updateInfos();
-		this.ia = new IAAleatoire(cerveau, window);
+		this.ia = new IAAleatoire(cerveau, gameWindow);
+		gameWindow.updateInfos();
 	}
 	
 	@Override
@@ -34,11 +34,11 @@ public class MangiareCialde extends MouseAdapter {
 		levelGraphics.repaint();
 
 		// set the info label to the current player
-		window.updateInfos();
+		gameWindow.updateInfos();
 
 		// if it's the end of the game, notify the GUI
 		if (cerveau.whowin() != 0) {
-			window.setEndGameGUI(true);
+			gameWindow.setEndGameGUI(true);
 		}
 
 		ia.jouer();
