@@ -18,8 +18,13 @@ public class MangiareCialde extends MouseAdapter {
 		this.gameWindow = gameWindow;
 		this.levelGraphics = gameWindow.getLevelGraphics();
 		// set the info label to the current player
-		this.ia = new IASimple(cerveau, gameWindow);
 		gameWindow.updateInfos();
+
+		// uncomment following line to play against the random IA
+//		this.ia = new IAAleatoire(cerveau, gameWindow);
+
+		// uncomment following line to play against the simple IA
+		this.ia = new IASimple(cerveau, gameWindow);
 	}
 	
 	@Override
